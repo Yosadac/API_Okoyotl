@@ -2,21 +2,24 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+    libpq-dev gcc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Instalar dependencias
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar aplicación
+# Copiar estructura completa
 COPY . .
 
-# Puerto expuesto
-EXPOSE 8000
+# Específicamente asegurar la copia de tu app
+COPY Okoyotl/ ./Okoyotl/
 
-# Comando de producción
-CMD ["gunicorn", "V1_OKOYOTL.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+ENV PYTHONPATH=/app \
+    DJANGO_SETTINGS_MODULE=settings
+
+RUN chmod +x entrypoint.sh
+
+EXPOSE 8000
+ENTRYPOINT ["/app/entrypoint.sh"]

@@ -2,13 +2,14 @@ services:
   web:
     build: .
     container_name: django_app
-    command: sh -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     environment:
       - DATABASE_URL=postgres://postgres.oarlvtewarfcvndbhqsq:MiztliG16y03@aws-0-us-east-2.pooler.supabase.com:6543/postgres
+      - PYTHONPATH=/app  # Asegurar el PYTHONPATH
+      - DJANGO_SETTINGS_MODULE=settings  # Usar 'settings'
     networks:
       - app_network
 

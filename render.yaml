@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: okoyotl-api
+    runtime: docker
+    env: python
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: DATABASE_URL
+        value: postgres://postgres.oarlvtewarfcvndbhqsq:MiztliG16y03@aws-0-us-east-2.pooler.supabase.com:6543/postgres
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+      - key: DISABLE_COLLECTSTATIC
+        value: 1
