@@ -1,31 +1,22 @@
-# Docker
-Dockerfile
-docker-compose.yml
-
 # Entornos virtuales
-.venv/
 venv/
+.venv/
 
 # Archivos de entorno
 .env
-.env.production
+.env.local
 
-# Archivos de base de datos local
+# Archivos Python temporales
+__pycache__/
+*.py[cod]
+
+# Base de datos local
 *.sqlite3
 *.db
 
-# Archivos generados por Django
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Archivos estáticos
-staticfiles/
-media/
-
-# Logs
-*.log
+# Archivos de IDE
+.idea/
+.vscode/
 
 # Archivos de sistema
 .DS_Store
