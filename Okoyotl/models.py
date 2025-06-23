@@ -45,7 +45,7 @@ class TipoJornada(models.Model):
     nombreJornada = models.CharField(max_length=20, choices=TIPOS_JORNADA)
       
     def __str__(self):
-        return f"La jornada del trabajador es: {self.prioridad}"
+        return f"La jornada del trabajador es: {self.nombreJornada}"
 
 
 #--CUADRILLA--
